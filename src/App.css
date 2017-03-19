@@ -26,3 +26,11 @@
         transform: rotate(360deg);
     }
 }
+
+.food-form {
+    padding: 1em;
+}
+
+.food-entry {
+    padding: 0.5em;
+}

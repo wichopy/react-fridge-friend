@@ -16,7 +16,7 @@ class FoodForm extends Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+    // alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
     // debugger;
     this.props.newFoodItem(this.state.value)
@@ -27,15 +27,18 @@ class FoodForm extends Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label style={{overflow: 'hidden'}}>
-          <input className="btn waves-effect waves-light" type="submit" value="Submit" style={{float: 'left'}}/>
           <input 
             type="text" 
             placeholder="feed me food" 
             value={this.state.value} 
             onChange={this.handleChange} 
-            style={{width: '100%'}}
+            style={{width: '60%', paddingRight: '.5em'}}
+            className="food-entry"
           />
         </label>
+          <input className="btn waves-effect waves-light" type="submit" value="Submit" 
+          /*style={{float: 'center'}}*/
+          />
       </form>
     );
   }

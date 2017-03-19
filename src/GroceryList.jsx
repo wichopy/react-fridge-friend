@@ -13,14 +13,16 @@ class GroceryList extends Component {
     )
     return ( 
       <div className="container">
+        <div className="row center-align food-form">
+            <FoodForm newFoodItem={this.props.newFoodItem}/>
+        </div>
         <div className="row">
           <div className="col s6">
-            <FoodForm newFoodItem={this.props.newFoodItem}/>
-            Grocery List
+            <h3>Grocery List</h3>
             <ul className="collection"> { listItems } </ul>
           </div>
           <div className="col s6">
-            Fridge Inventory
+            <h3>Fridge Inventory</h3>
             <ul className="collection"> { fridgeItems } </ul>
           </div>
         </div>
