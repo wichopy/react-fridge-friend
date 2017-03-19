@@ -15,7 +15,7 @@ class GroceryList extends Component {
       <div className="container">
         <div className="row">
           <div className="col s6">
-            <FoodForm />
+            <FoodForm newFoodItem={this.props.newFoodItem}/>
             Grocery List
             <ul className="collection"> { listItems } </ul>
           </div>

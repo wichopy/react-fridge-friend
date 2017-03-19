@@ -11,7 +11,14 @@ export default class App extends Component {
       groceries: ['apples','oranges','onions','celery', 'steak'],
       fridge: ['banana', 'cucumber', 'chicken']
     }
-      console.log(this.state)
+      console.log(this)
+  }
+
+  newFoodItem (food) {
+    // debugger;
+    var currentFoodItems = this.state.groceries
+    currentFoodItems.push(food)
+    this.setState({groceries: currentFoodItems});
   }
 
   render() {
@@ -25,7 +32,7 @@ export default class App extends Component {
         </div>
       </div>
       <div className="grocery-list">
-        <GroceryList groceries={this.state.groceries} fridge={this.state.fridge} />
+        <GroceryList groceries={this.state.groceries} fridge={this.state.fridge} newFoodItem={this.newFoodItem.bind(this)}/>
       </div>
       </div>
     );
