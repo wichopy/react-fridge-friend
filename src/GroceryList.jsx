@@ -3,6 +3,7 @@ import GroceryListItem from './GroceryListItem.jsx'
 import FridgeItem from './FridgeItem.jsx'
 import FoodForm from './FoodForm.jsx';
 import {Modal,Button} from 'react-materialize';
+
 class GroceryList extends Component {
 
   render() {
@@ -12,6 +13,8 @@ class GroceryList extends Component {
     const fridgeItems = this.props.fridge.map( (fi,i) => 
       <FridgeItem fi={fi} key={i} />
     )
+    const shelflife = this.props.findShelfLife('carrots')
+    
     return ( 
       <div className="container">
         <div className="row center-align food-form">

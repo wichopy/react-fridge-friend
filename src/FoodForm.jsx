@@ -7,8 +7,6 @@ class FoodForm extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    console.log(props);
-    console.log(this);
   }
   
   handleChange(event) {

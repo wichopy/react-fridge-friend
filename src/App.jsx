@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import GroceryList from './GroceryList.jsx';
-import {Modal,Button} from 'react-materialize';
+import axios from 'axios';
 
 export default class App extends Component {
   constructor(props){
@@ -11,7 +11,6 @@ export default class App extends Component {
       groceries: ['apples','oranges','onions','celery', 'steak'],
       fridge: ['banana', 'cucumber', 'chicken']
     }
-      console.log(this)
   }
 
   newFoodItem (food) {
@@ -21,17 +20,36 @@ export default class App extends Component {
     this.setState({groceries: currentFoodItems});
   }
 
+  findShelfLife(food){
+    return axios(
+      {
+        method: 'get',
+        url: 'https://shelf-life-api.herokuapp.com/search?q='+food,
+        // withCredentials: false,
+        // headers: {'X-Requested-With': "ACCESS-CONTROL-ALLOW-ORIGIN"}
+      }
+    )
+    .then((data) => {
+      console.log(data);
+      return data;
+    });
+  }
+
   render() {
 
     return (
     
       <div className="App">
         <div className="App-header">
-        
           <h2>   <img src={logo} className="App-logo" alt="logo" /> Welcome to Fridge Friend React</h2>
         </div>
         <div className="grocery-list">
-          <GroceryList groceries={this.state.groceries} fridge={this.state.fridge} newFoodItem={this.newFoodItem.bind(this)}/>
+          <GroceryList 
+            groceries={this.state.groceries} 
+            fridge={this.state.fridge} 
+            newFoodItem={this.newFoodItem.bind(this)}
+            findShelfLife={this.findShelfLife.bind(this)}
+          />
         </div>                
       </div>
     );
