@@ -12,23 +12,37 @@ export default class App extends Component {
       fridge: ['banana', 'cucumber', 'chicken']
     }
   }
-
+  componentDidMount() {
+    const ws = new WebSocket('ws://localhost:5000');
+    this.socket = ws;
+    this.socket.onopen = () => {
+      console.log('Connected to server');
+    }
+    this.socket.onmessage = (event) => {
+      // console.log(event.data);
+      this.newMessageFromServer(event.data);
+    }
+    this.socket.onclose = () => {
+      console.log('closing socket!');
+    }
+  }
+/**
+ * 
+immutable: Array#concat, Array#slice, Array#map, Array#reduce, Array#filter,
+mutable: Array#push, Array#splice, for loops w/ direct access
+ */
   newFoodItem (food) {
-    // debugger;
-    var currentFoodItems = this.state.groceries
-    currentFoodItems.push(food)
-    this.setState({groceries: currentFoodItems});
+    this.socket.send(JSON.stringify(food));
+    this.setState({groceries: this.state.groceries.concat(food)});
   }
 
   findShelfLife(food){
-    return axios(
-      {
-        method: 'get',
-        url: 'https://shelf-life-api.herokuapp.com/search?q='+food,
-        // withCredentials: false,
-        // headers: {'X-Requested-With': "ACCESS-CONTROL-ALLOW-ORIGIN"}
-      }
-    )
+    return axios({
+      method: 'get',
+      url: 'https://shelf-life-api.herokuapp.com/search?q='+food,
+         withCredentials: false,
+        // headers: {'X-Requested-With': "XMLHttpRequest"}
+    })
     .then((data) => {
       console.log(data);
       return data;

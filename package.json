@@ -7,6 +7,7 @@
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "react-materialize": "0.18.1",
+    "react-scripts": "^0.9.5",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
